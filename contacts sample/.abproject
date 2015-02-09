@@ -70,12 +70,16 @@
   "WP8ProductID": "{777caf18-c792-4831-8cb7-76ffbce97646}",
   "WPSdk": "8.0",
   "WP8Capabilities": [],
-  "WP8SupportedResolutions": [],
+  "WP8SupportedResolutions": [
+    "ID_RESOLUTION_WVGA",
+    "ID_RESOLUTION_WXGA",
+    "ID_RESOLUTION_HD720P"
+  ],
   "iOSBackgroundMode": [],
   "WP8Requirements": [],
   "WP8Publisher": "",
   "Author": "",
   "WP8TileTitle": "",
-  "Description": "contacts sample",
+  "Description": "sample-contacts",
   "FrameworkVersion": "3.5.0"
 }
