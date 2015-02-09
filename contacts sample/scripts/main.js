@@ -7,6 +7,8 @@ document.addEventListener("touchstart", function() {
 function onDeviceReady() {
 	var app = new Application();
 	app.run();
+    
+    navigator.splashscreen.hide();
 }
 
 function Application() {
