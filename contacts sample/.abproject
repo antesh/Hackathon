@@ -65,8 +65,6 @@
 	"ProjectFileName": "",
 	"Framework": "Cordova",
 	"DisplayName": "contacts sample",
-	"WP8PublisherID": "{6c0e3dee-67e4-49a5-86c6-df439abaa610}",
-	"WP8ProductID": "{777caf18-c792-4831-8cb7-76ffbce97646}",
 	"WPSdk": "8.0",
 	"WP8SupportedResolutions": [
 		"ID_RESOLUTION_WVGA",
