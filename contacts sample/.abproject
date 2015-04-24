@@ -64,7 +64,7 @@
 	"TargetFrameworkVersion": "",
 	"ProjectFileName": "",
 	"Framework": "Cordova",
-	"DisplayName": "contacts sample",
+	"DisplayName": "Contacts",
 	"WPSdk": "8.0",
 	"WP8SupportedResolutions": [
 		"ID_RESOLUTION_WVGA",
@@ -73,6 +73,11 @@
 	],
 	"WP8Publisher": "",
 	"Author": "",
+	"WP8Publisher": "",
+	"WP8TileTitle": "",
+	"WP8Capabilities": [],
+	"iOSBackgroundMode": [],
+	"WP8Requirements": [],
 	"WP8TileTitle": "",
 	"Description": "sample-contacts",
 	"FrameworkVersion": "3.7.0"
