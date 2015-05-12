@@ -10,7 +10,7 @@ With the Contacts plugin, you can access the contacts database of the mobile dev
 
 ## Sample Overview
 
-This sample shows how to use the methods of the Contacts plugin. It lets you create contacts, find contacts in the existing database, clone existing contacts and delete existing contacts with four buttons. A text box outputs information about your last operation.
+This sample shows how to use the methods of the Contacts plugin. It lets you create new contacts and find, clone and delete existing entries in the database. A text box prints information about your last operation.
 
 This sample shows how to use the following plugin objects and methods.
 
