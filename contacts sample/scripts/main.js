@@ -37,7 +37,7 @@ Application.prototype = {
         if (!value) {
             document.getElementById("result").innerHTML = "";
         } else {
-            document.getElementById("result").innerHTML = value;
+            document.getElementById("result").innerHTML += value;
         }
     },
     
