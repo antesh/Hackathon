@@ -67,18 +67,20 @@
 	"DisplayName": "Contacts",
 	"WPSdk": "8.0",
 	"WP8SupportedResolutions": [
+		"ID_RESOLUTION_HD720P",
 		"ID_RESOLUTION_WVGA",
-		"ID_RESOLUTION_WXGA",
-		"ID_RESOLUTION_HD720P"
+		"ID_RESOLUTION_WXGA"
 	],
 	"WP8Publisher": "",
 	"Author": "",
-	"WP8Publisher": "",
 	"WP8TileTitle": "",
 	"WP8Capabilities": [],
 	"iOSBackgroundMode": [],
 	"WP8Requirements": [],
-	"WP8TileTitle": "",
 	"Description": "sample-contacts",
-	"FrameworkVersion": "3.7.0"
+	"FrameworkVersion": "3.7.0",
+	"WP8PublisherID": "{431a3687-fdbb-482a-b9b2-132ff5066165}",
+	"WP8ProductID": "{af97b1f4-283b-4a59-a2b5-385441b42fef}",
+	"WP8PackageIdentityName": "1234Telerik.com.telerik.samplecontacts",
+	"WP8WindowsPublisherName": "CN=Telerik"
 }
