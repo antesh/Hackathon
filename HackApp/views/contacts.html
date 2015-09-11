@@ -1,7 +1,38 @@
 <div data-role="view" data-title="Contacts" data-layout="main" data-model="APP.models.contacts">
   <ul data-role="listview" data-style="inset" data-template="contactsTemplate" data-bind="source: ds"></ul>
-</div>
-
+    <li>
+    	<input type="text" placeholder="Enter task here" data-bind="value: taskName">
+        <div>
+            
+          <button data-role="button" class="km-primary" data-bind="click:fetchJson2">
+              Add
+            </button>
+        </div>
+    </li>
+</div>--><!--
+<div data-role="view" data-title="Compose Email" data-layout="main" data-model="APP.models.settings">
+    <div class="content">
+        <div>
+            <form role="form" action="">
+               <ul data-role="listview" data-style="inset">
+                    <li>
+                        <label for="username" class="km-required km-label-above">user name
+                            <input value="" placeholder="nbhydabharadw" type="text" id="username"/>
+                        </label>
+                    </li>
+                    <li>
+                        <label for="pwd" class="km-label-above">password
+                            <input value="" type="password" id="pwd"/>
+                        </label>
+                    </li>                    
+                    <li>
+                       <button data-role="button" data-animated="true" type="submit">Connect</button>
+                    </li>
+                </ul>                  
+			</form>
+        </div>
+    </div>
+</div>-->
 <!-- this is the template used by the listview. template items are automatically
      wrapped in an <li> by Kendo UI Mobile -->
 <script type="text/x-kendo-template" id="contactsTemplate">

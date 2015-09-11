@@ -1,1 +1,32 @@
+
+
 .km-drawer-button:before, .km-drawer-button:after  { content: "\E077"; }
+
+
+
+  ul.a {
+    list-style-type: circle;
+      
+}
+
+ul {
+   list-style-image: url('./../kendo/styles/images/folder_icon.png');
+     list-style-position: inside;
+    list-style-type: none;
+    padding: 3px;
+    margin: 2px;
+}
+    
+    
+}
+
+div
+{
+    font-size: 15px;
+    font-family: "Times New Roman", Times, serif;
+}
+
+
+
+
+

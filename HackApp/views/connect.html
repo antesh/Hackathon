@@ -1,0 +1,28 @@
+<div data-role="view" data-title="Remote Device" data-layout="main" data-model="APP.models.connect">
+          <div class="content">
+            <div>
+                <form role="form" action="">
+                   <ul data-role="listview" data-style="inset">
+                        <li>
+                            <label for="username" class="km-required km-label-above">user name
+                                <input value="" placeholder="nbhydabharadw" type="text" id="username"/>
+                            </label>
+                        </li>
+                        <li>
+                            <label for="pwd" class="km-label-above">password
+                                <input value="" type="password" id="pwd"/>
+                            </label>
+                        </li>                    
+                        <li>
+                           <button data-role="button" data-animated="true" type="submit">Connect</button>
+                        </li>
+                    </ul>                  
+    			</form>
+            </div>
+        </div>
+    </div>
+<!-- this is the template used by the listview. template items are automatically
+     wrapped in an <li> by Kendo UI Mobile -->
+<!--<script type="text/x-kendo-template" id="contactsTemplate">
+  <a data-bind="click: alert">#: data.name #</a>
+</script>-->

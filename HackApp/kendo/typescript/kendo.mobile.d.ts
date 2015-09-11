@@ -706,14 +706,14 @@ declare module kendo.data {
         unshift(...items: any[]): number;
         wrapAll(source: Object, target: Object): any;
         wrap(object: Object, parent: Object): any;
-        indexOf(item: any): number;
-        forEach(callback: (item: Object, index: number, source: ObservableArray) => void ): void;
-        map(callback: (item: Object, index: number, source: ObservableArray) => any): any[];
-        filter(callback: (item: Object, index: number, source: ObservableArray) => boolean): any[];
-        find(callback: (item: Object, index: number, source: ObservableArray) => boolean): any;
-        every(callback: (item: Object, index: number, source: ObservableArray) => boolean): boolean;
-        some(callback: (item: Object, index: number, source: ObservableArray) => boolean): boolean;
-        remove(item: Object): void;
+        indexOf(absolutePath: any): number;
+        forEach(callback: (absolutePath: Object, index: number, source: ObservableArray) => void ): void;
+        map(callback: (absolutePath: Object, index: number, source: ObservableArray) => any): any[];
+        filter(callback: (absolutePath: Object, index: number, source: ObservableArray) => boolean): any[];
+        find(callback: (absolutePath: Object, index: number, source: ObservableArray) => boolean): any;
+        every(callback: (absolutePath: Object, index: number, source: ObservableArray) => boolean): boolean;
+        some(callback: (absolutePath: Object, index: number, source: ObservableArray) => boolean): boolean;
+        remove(absolutePath: Object): void;
     }
 
     interface ObservableArrayEvent {
@@ -1720,12 +1720,12 @@ on all platforms.
         */
         remove(dataItems: any): void;
         /**
-        Re-renders the given listview item with the new dataItem provided. In order for the method to work as expected, the data items should be of type kendo.data.Model.
+        Re-renders the given listview absolutePath with the new dataItem provided. In order for the method to work as expected, the data items should be of type kendo.data.Model.
         @method
-        @param item - The listview item to update
+        @param absolutePath - The listview absolutePath to update
         @param dataItem - The new dataItem
         */
-        setDataItem(item: JQuery, dataItem: kendo.data.Model): void;
+        setDataItem(absolutePath: JQuery, dataItem: kendo.data.Model): void;
         /**
         Prepares the ListView for safe removal from DOM. Detaches all event handlers and removes jQuery.data attributes to avoid memory leaks. Calls destroy method of any child Kendo widgets.
         @method
@@ -1808,7 +1808,7 @@ Applicable only when the type is set to group, or when binding to grouped DataSo
         */
         fixedHeaders?: boolean;
         /**
-        The header item template (applicable when the type is set to group).
+        The header absolutePath template (applicable when the type is set to group).
         @member {any}
         */
         headerTemplate?: any;
@@ -1839,7 +1839,7 @@ Previously loaded pages in the DataSource are also discarded.
         */
         style?: string;
         /**
-        The item template.
+        The absolutePath template.
         @member {any}
         */
         template?: any;
@@ -1854,7 +1854,7 @@ Previously loaded pages in the DataSource are also discarded.
         */
         filterable?: ListViewFilterable;
         /**
-        Fires when item is tapped.
+        Fires when absolutePath is tapped.
         */
         click?(e: ListViewClickEvent): void;
         /**
@@ -1866,7 +1866,7 @@ Previously loaded pages in the DataSource are also discarded.
         */
         dataBinding?(e: ListViewEvent): void;
         /**
-        Fires when a new item is added to the listview (usually in virtual mode).
+        Fires when a new absolutePath is added to the listview (usually in virtual mode).
         */
         itemChange?(e: ListViewEvent): void;
     }
@@ -1879,17 +1879,17 @@ Previously loaded pages in the DataSource are also discarded.
 
     interface ListViewClickEvent extends ListViewEvent {
         /**
-        The selected list item.
+        The selected list absolutePath.
         @member {JQuery}
         */
-        item?: JQuery;
+        absolutePath?: JQuery;
         /**
         The tapped DOM element.
         @member {JQuery}
         */
         target?: JQuery;
         /**
-        The corresponding dataItem associated with the item (available in databound mode only).
+        The corresponding dataItem associated with the absolutePath (available in databound mode only).
 Note: The dataItem must be from a non-primitive type (Object).
         @member {any}
         */
@@ -2757,7 +2757,7 @@ Native scrolling is only enabled on platforms that support it: iOS > 4, Android 
         /**
         Introduced in Q1 2013 SP Sets a badge on one of the tabs with the specified value. If invoked without second parameter, returns the tab's current badge value. Set the value to false to remove the badge.
         @method
-        @param tab - The target tab specified either as a jQuery selector/object or as an item index.
+        @param tab - The target tab specified either as a jQuery selector/object or as an absolutePath index.
         @param value - The target value to be set or false to be removed.
         @returns Returns the badge value if invoked without parameters, otherwise returns the TabStrip object.
         */
@@ -2765,7 +2765,7 @@ Native scrolling is only enabled on platforms that support it: iOS > 4, Android 
         /**
         Introduced in Q1 2013 SP Sets a badge on one of the tabs with the specified value. If invoked without second parameter, returns the tab's current badge value. Set the value to false to remove the badge.
         @method
-        @param tab - The target tab specified either as a jQuery selector/object or as an item index.
+        @param tab - The target tab specified either as a jQuery selector/object or as an absolutePath index.
         @param value - The target value to be set or false to be removed.
         @returns Returns the badge value if invoked without parameters, otherwise returns the TabStrip object.
         */
@@ -2773,7 +2773,7 @@ Native scrolling is only enabled on platforms that support it: iOS > 4, Android 
         /**
         Introduced in Q1 2013 SP Sets a badge on one of the tabs with the specified value. If invoked without second parameter, returns the tab's current badge value. Set the value to false to remove the badge.
         @method
-        @param tab - The target tab specified either as a jQuery selector/object or as an item index.
+        @param tab - The target tab specified either as a jQuery selector/object or as an absolutePath index.
         @param value - The target value to be set or false to be removed.
         @returns Returns the badge value if invoked without parameters, otherwise returns the TabStrip object.
         */
@@ -2781,7 +2781,7 @@ Native scrolling is only enabled on platforms that support it: iOS > 4, Android 
         /**
         Introduced in Q1 2013 SP Sets a badge on one of the tabs with the specified value. If invoked without second parameter, returns the tab's current badge value. Set the value to false to remove the badge.
         @method
-        @param tab - The target tab specified either as a jQuery selector/object or as an item index.
+        @param tab - The target tab specified either as a jQuery selector/object or as an absolutePath index.
         @param value - The target value to be set or false to be removed.
         @returns Returns the badge value if invoked without parameters, otherwise returns the TabStrip object.
         */
@@ -2846,7 +2846,7 @@ Native scrolling is only enabled on platforms that support it: iOS > 4, Android 
         The selected tab
         @member {JQuery}
         */
-        item?: JQuery;
+        absolutePath?: JQuery;
     }
 
 
