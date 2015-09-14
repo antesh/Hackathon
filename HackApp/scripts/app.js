@@ -6,26 +6,35 @@
     var app;
     var absolutePath="";
 	var absolutePath="";
-    // create an object to store the models for each view    
+    var fileName_mail="";
+    // create an object to store the models for each     
     function attachOnclickListener(element){
         element.on('click',function(event){
           var target = event.target;
           if(target){
-              var data = $(target).data('data');
-              if(absolutePath == ""){
-                  absolutePath=data;
+              var data = $(target).text();
+              var type = $(target).data('type');
+              if(type == "1"){
+                  
+                  fileName_mail=absolutePath+"/"+data;
+        		  var url="http://192.168.196.70:7080/RemoteServer/servlet/uiaction.jsrv?command="+absolutePath+"/"+data+"&username=NBHYDMAZIMUDD7&password=password";        
+                  fileAction(url);
               }else{
-              absolutePath=absolutePath+"/"+data;              
-              }              
-              var url="http://192.168.196.70:7080/RemoteServer/servlet/uiaction.jsrv?command=DIR>"+absolutePath +"&username=NBHYDMAZIMUDD7&password=password";
-              getFileStructure(url);
+                  if(absolutePath == ""){
+                      absolutePath=data;
+                  }else{
+                  absolutePath=absolutePath+"/"+data;              
+              }
+	              var url="http://192.168.196.70:7080/RemoteServer/servlet/uiaction.jsrv?command=DIR>"+absolutePath +"&username=NBHYDMAZIMUDD7&password=password";
+    	          getFileStructure(url);
+              }
              }     
        });
     }
     function renderNavBar(){
         var path=absolutePath.split('/');
         for(i=0;i<path.length;i++){
-            var element = $("<li><a href='#secondview'>"+path[i]+"</a></li>");
+            var element = $("<li>"+path[i]+"</li>");
             element.data('data',path[i]);    
             $("#navbar").append(element);
         }
@@ -33,19 +42,23 @@
         
     }
     function renderDriveList(response){
-        renderNavBar();
+        //renderNavBar();
         for(var i=0;i<response.list.length;i++){
-                  var element = $("<li><a href='#secondview'>"+response.list[i]['drive']+"</a></li>");
-                   element.data('data',response.list[i]['drive']);                    
+                  var element = $("<li>"+response.list[i]['drive']+"</li>");
+                   element.data('data',response.list[i]['drive']);
+            	   element.data('type',response.list[i]['type']);
                    attachOnclickListener(element);
                   $("#latitudes").append(element);
           }     
     }
     function renderFileList(response){
-        renderNavBar();
+        //renderNavBar();
         for(var i=0;i<response.list.length;i++){
-              var element = $("<li><a href='#secondview'>"+response.list[i]['name']+"</a></li>");
-                   element.data('data',response.list[i]['name']);                    
+              var element = $("<li>"+response.list[i]['name']+"</li>");
+            	console.log(element);
+            	
+                   element.data('data',response.list[i]['name']);
+            	   element.data('type',response.list[i]['type']);
                    attachOnclickListener(element);
                   $("#latitudes").append(element);
         }
@@ -59,7 +72,7 @@
                       success: function(data) {                          
                           $('#latitudes').empty();
                           var response = JSON.parse(data);
-                          renderStructureList(response);
+                          renderDriveList(response);
                           console.log(data);
                       },
                       error: function(e) {
@@ -78,6 +91,7 @@
                       success: function(data) {                          
                           $('#latitudes').empty();
                           var response = JSON.parse(data);
+                          
                           renderFileList(response);
                           console.log(data);
                                                 
@@ -89,7 +103,23 @@
                       }
                     });        
     }
-    
+     function fileAction(url){
+        $.ajax({
+                      url: url,
+                      type: 'GET',
+                     dataType: "text",
+                    //  data: 'address=iLabs+Madhapur+Hyderabad+India&key=AIzaSyDxoD0MXQq_2Eo0kFPzaHiqD7I5h7cW9zU',
+                      success: function(data) {                          
+                          console.log(data);
+                                                
+                      },
+                      error: function(e) {
+                        //called when there is an error
+                          alert("failure");
+                        console.log(e.message);
+                      }
+                    });        
+    }
     window.APP = {
       models: {
          index: {
@@ -125,7 +155,9 @@
                       type: 'GET',
                      dataType: "text",
                     //  data: 'address=iLabs+Madhapur+Hyderabad+India&key=AIzaSyDxoD0MXQq_2Eo0kFPzaHiqD7I5h7cW9zU',
-                      success: function(data) {                          
+                      success: function(data) {  
+                          absolutePath="";
+                          $('#latitudes').empty();                        
                           var response = JSON.parse(data);
                           console.log(data);
                           renderDriveList(response);
@@ -151,7 +183,50 @@
               dataSource.add({name:newTask});
               this.set('taskName','')
           }
-        }
+        },email: {
+          title: 'Email',
+          ds: new kendo.data.DataSource({
+            data: [{ id: 1, name: 'Prepare for presentation' }]
+          }),
+           fetchJson2:function(e){
+               },
+          add1: function(e) {
+              
+           var mail =$("#mail").val();
+               var attach =fileName_mail;              
+               var sub =$("#sub").val();
+               var body =$("#body").val();
+              
+           
+              var url="http://192.168.196.70:7080/RemoteServer/servlet/uiaction.jsrv?command=EMAIL>";
+              url=url+ mail+" "+ sub+" "+ body+" "+ attach+"&username=NBHYDMAZIMUDD7&password=password";
+              
+              console.log(url);
+              $.ajax({
+                      url: url,
+                      type: 'POST',
+                     dataType: "text",
+                    //  data: 'address=iLabs+Madhapur+Hyderabad+India&key=AIzaSyDxoD0MXQq_2Eo0kFPzaHiqD7I5h7cW9zU',
+                      success: function(data) {                          
+                          var response = JSON.parse(data);
+                          console.log(data);
+                       //   renderDriveList(response);
+                      },
+                      error: function(e) {
+                        //called when there is an error
+                          alert("failure");
+                        console.log(e.message);
+                      }
+                    });
+              
+              
+     		
+              
+           
+              
+          },
+		} 
+          
       }
     };
 
