@@ -3,9 +3,10 @@
 
     // store a reference to the application object that will be created
     // later on so that we can use it if need be
+    var terminalDirPath = "C:/";
+	var BASE_URL = "http://192.168.196.70:7080/RemoteServer/servlet/uiaction.jsrv?";
     var app;
     var absolutePath="";
-	var absolutePath="";
     var fileName_mail="";
     // create an object to store the models for each     
     function attachOnclickListener(element){
@@ -120,6 +121,30 @@
                       }
                     });        
     }
+    
+	function getTerminalCmdOutputAjax(command) {
+		var requestParms = "command=TERMINAL>" + terminalDirPath + " %26%26 " + command +"&username=NBHYDMAZIMUDD7&password=password";
+		var url = BASE_URL + requestParms;
+		$.ajax({
+			url: url,
+            type: 'GET',
+            dataType: "text",
+            success: function(data) {
+				var responseJson = JSON.parse(data);
+                if(responseJson.success) {
+                    if(responseJson.path) {
+                        terminalDirPath = $.trim(responseJson.path);
+                        console.log("Path: " + terminalDirPath);
+                    }
+                	$("#termialResultArea").val($("#termialResultArea").val() + "\n\n" + terminalDirPath + ">" + command + "\n"+ responseJson.output);
+                }
+            },
+			error: function(e) {
+                console.log(e.message);
+              }
+		});     
+    }
+    
     window.APP = {
       models: {
          index: {
@@ -170,6 +195,14 @@
                     });
             }
         },
+		terminal: {
+			title: 'Terminal',
+			executeTerminalCmdAjax:function(e) {
+				if($("#commandLine").val()) {
+					getTerminalCmdOutputAjax($("#commandLine").val());
+                }
+            }
+		},
         contacts: {
           title: 'Task Name',
           ds: new kendo.data.DataSource({
@@ -218,12 +251,6 @@
                         console.log(e.message);
                       }
                     });
-              
-              
-     		
-              
-           
-              
           },
 		} 
           
@@ -244,7 +271,7 @@
         skin: 'flat',
 
         // the application needs to know which view to load first
-        initial: 'views/contacts.html'
+        initial: 'views/connect.html'
       });
 
     }, false);
