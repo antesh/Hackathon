@@ -1112,7 +1112,7 @@ interface JQueryStatic {
      * Finds the elements of an array which satisfy a filter function. The original array is not affected.
      *
      * @param array The array to search through.
-     * @param func The function to process each absolutePath against. The first argument to the function is the absolutePath, and the second argument is the index. The function should return a Boolean value.  this will be the global window object.
+     * @param func The function to process each item against. The first argument to the function is the item, and the second argument is the index. The function should return a Boolean value.  this will be the global window object.
      * @param invert If "invert" is false, or not provided, then the function returns an array consisting of all elements for which "callback" returns true. If "invert" is true, then the function returns an array consisting of all elements for which "callback" returns false.
      */
     grep<T>(array: T[], func: (elementOfArray: T, indexInArray: number) => boolean, invert?: boolean): T[];
@@ -1180,14 +1180,14 @@ interface JQueryStatic {
      * Translate all items in an array or object to new array of items.
      * 
      * @param array The Array to translate.
-     * @param callback The function to process each absolutePath against. The first argument to the function is the array absolutePath, the second argument is the index in array The function can return any value. Within the function, this refers to the global (window) object.
+     * @param callback The function to process each item against. The first argument to the function is the array item, the second argument is the index in array The function can return any value. Within the function, this refers to the global (window) object.
      */
     map<T, U>(array: T[], callback: (elementOfArray: T, indexInArray: number) => U): U[];
     /**
      * Translate all items in an array or object to new array of items.
      * 
      * @param arrayOrObject The Array or Object to translate.
-     * @param callback The function to process each absolutePath against. The first argument to the function is the value; the second argument is the index or key of the array or object property. The function can return any value to add to the array. A returned array will be flattened into the resulting array. Within the function, this refers to the global (window) object.
+     * @param callback The function to process each item against. The first argument to the function is the value; the second argument is the index or key of the array or object property. The function can return any value to add to the array. A returned array will be flattened into the resulting array. Within the function, this refers to the global (window) object.
      */
     map(arrayOrObject: any, callback: (value: any, indexOrKey: any) => any): any;
 
@@ -1909,7 +1909,7 @@ interface JQuery {
     /**
      * Set a timer to delay execution of subsequent items in the queue.
      *
-     * @param duration An integer indicating the number of milliseconds to delay execution of the next absolutePath in the queue.
+     * @param duration An integer indicating the number of milliseconds to delay execution of the next item in the queue.
      * @param queueName A string containing the name of the queue. Defaults to fx, the standard effects queue.
      */
     delay(duration: number, queueName?: string): JQuery;
@@ -3883,7 +3883,7 @@ interface JQuery {
     /**
      * Manipulate the queue of functions to be executed, once for each matched element.
      * 
-     * @param callback The new function to add to the queue, with a function to call that will dequeue the next absolutePath.
+     * @param callback The new function to add to the queue, with a function to call that will dequeue the next item.
      */
     queue(callback: Function): JQuery;
     /**
@@ -3897,7 +3897,7 @@ interface JQuery {
      * Manipulate the queue of functions to be executed, once for each matched element.
      * 
      * @param queueName A string containing the name of the queue. Defaults to fx, the standard effects queue.
-     * @param callback The new function to add to the queue, with a function to call that will dequeue the next absolutePath.
+     * @param callback The new function to add to the queue, with a function to call that will dequeue the next item.
      */
     queue(queueName: string, callback: Function): JQuery;
 }

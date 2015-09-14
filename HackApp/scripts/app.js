@@ -134,9 +134,9 @@
                 if(responseJson.success) {
                     if(responseJson.path) {
                         terminalDirPath = $.trim(responseJson.path);
-                        console.log("Path: " + terminalDirPath);
                     }
                 	$("#termialResultArea").val($("#termialResultArea").val() + "\n\n" + terminalDirPath + ">" + command + "\n"+ responseJson.output);
+                    $("#commandLine").val("");
                 }
             },
 			error: function(e) {
@@ -175,6 +175,7 @@
             },
 			fetchJson1:function(e){
                 //alert("hi");
+                $("#back_button").removeAttr("disabled");
                  $.ajax({
                       url: 'http://192.168.196.70:7080/RemoteServer/servlet/uiaction.jsrv?command=DRIVES&username=NBHYDMAZIMUDD7&password=password',
                       type: 'GET',
@@ -225,8 +226,8 @@
                },
           add1: function(e) {
               
-           var mail =$("#mail").val();
-               var attach =fileName_mail;              
+          	 var mail =$("#mail").val();
+               var attach =fileName_mail;
                var sub =$("#sub").val();
                var body =$("#body").val();
               
@@ -268,7 +269,7 @@
         
         // comment out the following line to get a UI which matches the look
         // and feel of the operating system
-        skin: 'flat',
+        skin: 'nova',
 
         // the application needs to know which view to load first
         initial: 'views/connect.html'
