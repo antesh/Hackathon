@@ -12,6 +12,7 @@
     function attachOnclickListener(element){
         element.on('click',function(event){
           var target = event.target;
+          $(target).css('background-color','#93bde1');
           if(target){
               var data = $(target).text();
               var type = $(target).data('type');
@@ -45,9 +46,12 @@
     function renderDriveList(response){
         //renderNavBar();
         for(var i=0;i<response.list.length;i++){
-                  var element = $("<li>"+response.list[i]['drive']+"</li>");
+	            var element = $("<li><img src='images/drive-icon.png' alt='folderIcon' width='30px' height='30px'><span style='margin-left:10px;'>"+response.list[i]['drive']+"</span></li>");
                    element.data('data',response.list[i]['drive']);
             	   element.data('type',response.list[i]['type']);
+                   element.children('span').data('data',response.list[i]['drive']);
+            	   element.children('span').data('type',response.list[i]['type']);
+    
                    attachOnclickListener(element);
                   $("#latitudes").append(element);
           }     
@@ -55,11 +59,17 @@
     function renderFileList(response){
         //renderNavBar();
         for(var i=0;i<response.list.length;i++){
-              var element = $("<li>"+response.list[i]['name']+"</li>");
+            if(response.list[i]['type']==1){
+              var element = $("<li><img src='images/file-icon.png' alt='fileIcon' width='30px' height='30px'><span style='margin-left:10px;'>"+response.list[i]['name']+"</span></li>");
+            }else{
+                var element = $("<li><img src='images/folder_with_file.png' alt='folderIcon' width='30px' height='30px'><span style='margin-left:10px;'>"+response.list[i]['name']+"</span></li>");
+            }
             	console.log(element);
             	
                    element.data('data',response.list[i]['name']);
             	   element.data('type',response.list[i]['type']);
+            	   element.children('span').data('data',response.list[i]['drive']);
+                   element.children('span').data('type',response.list[i]['type']);
                    attachOnclickListener(element);
                   $("#latitudes").append(element);
         }
@@ -223,6 +233,8 @@
             data: [{ id: 1, name: 'Prepare for presentation' }]
           }),
            fetchJson2:function(e){
+               
+               $("#attach").val(fileName_mail);
                },
           add1: function(e) {
               
@@ -252,6 +264,8 @@
                         console.log(e.message);
                       }
                     });
+              app.navigate("views/home.html");
+              
           },
 		} 
           
