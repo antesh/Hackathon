@@ -1,12 +1,20 @@
 
 <div data-role="view" data-title="Email" data-layout="main" data-model="APP.models.email">
 
-	<div style="display: inline-block;width: 95%;margin-left: 5px;margin-right:5px;">
-		<input type="text" id="mail" style="width: 100%;" placeholder="To"/>
-		<input type="text" id="attach" style="width: 100%;" placeholder="Attachment"/>
+	<div style="text-align:center;display: inline-block;width: 95%;margin-left: 5px;margin-right:5px;">
+		<input type="text" id="mail" style="width: 100%;" placeholder="To" onfocus="myfunc()"/>
+		
 		<input type="text" id="sub" style="width: 100%;" placeholder="Subject"/>
-        <textarea id="body" style="width: 100%;height:200px;margin-top:10px border:none;" placeholder="Body"></textarea>
-		<button data-role="button" class="km-primary" data-bind="click:add1">Send</button>
+        <textarea id="body" style="width: 100%;height:200px;margin-top:10px; border:none;" placeholder="Body"></textarea>
+        <textarea type="text" id="attach" style="width: 100%;" placeholder="Attachment" readonly></textarea>
+		<button data-role="button" class="km-primary" style="width:80px" data-bind="click:add1">Send</button>
    	</div>
 
-</div>
+
+<script>
+    function myfunc()
+    {
+        APP.models.email.fetchJson2();
+    }
+</script>
+    </div>
