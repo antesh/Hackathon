@@ -60,9 +60,9 @@
         //renderNavBar();
         for(var i=0;i<response.list.length;i++){
             if(response.list[i]['type']==1){
-              var element = $("<li><img src='images/file-icon.png' alt='fileIcon' width='30px' height='30px'><span style='margin-left:10px;'>"+response.list[i]['name']+"</span></li>");
+              var element = $("<li><img src='images/file-icon.png' alt='fileIcon' width='30px' height='30px'><span>"+response.list[i]['name']+"</span></li>");
             }else{
-                var element = $("<li><img src='images/folder_with_file.png' alt='folderIcon' width='30px' height='30px'><span style='margin-left:10px;'>"+response.list[i]['name']+"</span></li>");
+                var element = $("<li><img src='images/folder_with_file.png' alt='folderIcon' width='30px' height='30px'><span>"+response.list[i]['name']+"</span></li>");
             }
             	console.log(element);
             	
@@ -246,7 +246,10 @@
            
               var url="http://192.168.196.70:7080/RemoteServer/servlet/uiaction.jsrv?command=EMAIL>";
               url=url+ mail+" "+ sub+" "+ body+" "+ attach+"&username=NBHYDMAZIMUDD7&password=password";
-              
+              $("#mail").val("");
+              $("#sub").val("");
+              $("#body").val("");
+              $("#attach").val("");
               console.log(url);
               $.ajax({
                       url: url,
